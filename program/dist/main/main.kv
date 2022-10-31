@@ -1,0 +1,33 @@
+#:kivy 2.1
+
+<Main>:
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: 1, 1
+
+        MDBottomNavigation:
+            panel_color: 1, 1, 1, 1
+
+            MDBottomNavigationItem:
+                name: 'screen 1'
+                text: "K-POP"
+                icon: 'resources/cheering.png'
+                ScrollView:
+                    MDList:
+                        id: kpop
+
+            MDBottomNavigationItem:
+                name: 'screen 2'
+                text: "POP"
+                icon: 'resources/lazy.png'
+                ScrollView:
+                    MDList:
+                        id: _pop
+
+            MDBottomNavigationItem:
+                name: 'screen 3'
+                text: "J-POP"
+                icon: 'resources/flex.png'
+                ScrollView:
+                    MDList:
+                        id: jpop
