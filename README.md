@@ -12,4 +12,4 @@
 
 자세한 다운로드 및 설정 방법은 YouTube 동영상 링크로 남기겠습니다! (っ￣∇￣)っ
 
-링크: YouTube
+링크: https://youtu.be/u0HQj3oGwGY
