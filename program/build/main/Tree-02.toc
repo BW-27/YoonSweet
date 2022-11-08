@@ -1,5 +1,7 @@
-('c:\\python3.7\\share\\glew\\bin',
+('c:\\users\\logos\\programming\\python\\kivy\\project_yoon\\venv\\share\\glew\\bin',
  None,
  [],
  'DATA',
- [('glew32.dll', 'c:\\python3.7\\share\\glew\\bin\\glew32.dll', 'DATA')])
+ [('glew32.dll',
+   'c:\\users\\logos\\programming\\python\\kivy\\project_yoon\\venv\\share\\glew\\bin\\glew32.dll',
+   'DATA')])

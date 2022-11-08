@@ -22,9 +22,20 @@ def type_url():
     url_fd.close()
     return list_url
 
-def type_filepath():
+def type_data_list_filepath():
     try:
-        filepath_fd = open("source/filepath", "r", encoding="utf-8")
+        filepath_fd = open("source/data_list_filepath", "r", encoding="utf-8")
+    except Exception as Argument:
+        logger.error(Argument)
+        return None
+    list_filepath = []
+    list_filepath = filepath_fd.read().splitlines()
+    filepath_fd.close()
+    return list_filepath
+
+def type_url_list_filepath():
+    try:
+        filepath_fd = open("source/url_list_filepath", "r", encoding="utf-8")
     except Exception as Argument:
         logger.error(Argument)
         return None

@@ -1,33 +1,216 @@
 #:kivy 2.1
+#:import FadeTransition kivy.uix.screenmanager.FadeTransition
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import NoTransition kivy.uix.screenmanager.NoTransition
 
 <Main>:
-    BoxLayout:
-        orientation: 'vertical'
-        size_hint: 1, 1
+    Screen:
+        name: 'main'
 
-        MDBottomNavigation:
-            panel_color: 1, 1, 1, 1
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, 1
 
-            MDBottomNavigationItem:
-                name: 'screen 1'
-                text: "K-POP"
-                icon: 'resources/cheering.png'
-                ScrollView:
-                    MDList:
+            MDBottomNavigation:
+                panel_color: 1, 1, 1, 1
+                transition: SlideTransition
+                # transition_duration: 0
+
+                MDBottomNavigationItem:
+                    name: 'screen 1'
+                    text: "K-POP"
+                    icon: 'resources/cheering.png'
+                    ScrollView:
                         id: kpop
+                        scroll_wheel_distance: 144
+                        always_overscroll: False
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        bar_width: 16
+                        scroll_type: ['content', 'bars']
 
-            MDBottomNavigationItem:
-                name: 'screen 2'
-                text: "POP"
-                icon: 'resources/lazy.png'
-                ScrollView:
-                    MDList:
+                MDBottomNavigationItem:
+                    name: 'screen 2'
+                    text: "POP"
+                    icon: 'resources/lazy.png'
+                    ScrollView:
                         id: _pop
+                        scroll_wheel_distance: 144
+                        always_overscroll: False
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        bar_width: 16
+                        scroll_type: ['content', 'bars']
 
-            MDBottomNavigationItem:
-                name: 'screen 3'
-                text: "J-POP"
-                icon: 'resources/flex.png'
-                ScrollView:
-                    MDList:
+                MDBottomNavigationItem:
+                    name: 'screen 3'
+                    text: "J-POP"
+                    icon: 'resources/flex.png'
+                    ScrollView:
                         id: jpop
+                        scroll_wheel_distance: 144
+                        always_overscroll: False
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        bar_width: 16
+                        scroll_type: ['content', 'bars']
+
+                MDBottomNavigationItem:
+                    name: 'screen 4'
+                    text: "SEARCH"
+                    icon: 'resources/listen.png'
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        TextInput:
+                            id: search
+                            
+                            # font setting
+                            font_name: 'font/NanumGothicBold.ttf'
+                            font_size: 20
+                            text: ""
+                            hint_text: "검색:"
+
+                            # text-input default setting
+                            focus: False
+                            multiline: False
+                            write_tab: False
+                            cursor_blink: True
+                            allow_copy: True
+
+                            # appearance
+                            size_hint: 1, None
+                            halign: 'left'
+                            height: 60
+                            padding: 20
+                            padding_y: [self.height / 2.0 - (self.line_height / 2.0) * len(self._lines), 0]
+
+                            # text-input color setting
+                            cursor_color: 0, 0, 0, 1
+                            background_color: 1, 1, 1, 1
+                            background_normal: ''
+                            background_active: ''
+
+                            # function
+                            on_text_validate: root.on_enter()
+                            # bug: enters twice in kr input
+                            text_validate_unfocus: False
+
+                        ScrollView:
+                            id: search_result
+                            scroll_wheel_distance: 144
+                            always_overscroll: False
+                            do_scroll_x: False
+                            do_scroll_y: True
+                            bar_width: 16
+                            scroll_type: ['content', 'bars']
+
+        FloatLayout:
+            Button:
+                text: '편집'
+                font_name: 'font/NanumGothicBold.ttf'
+                size: 100, 35
+                color: 0, 0, 0, 1
+                background_normal: ''
+                background_down: ''
+                pos: root.width - 100, 63
+                size_hint: None, None
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'edit'
+
+<Edit>:
+    Screen:
+        name: 'edit'
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 1, 1
+            
+            MDBottomNavigation:
+                panel_color: 1, 1, 1, 1
+                transition: SlideTransition
+                transition_duration: 0
+
+                MDBottomNavigationItem:
+                    name: 'screen 1'
+                    text: "K-POP"
+                    # icon: 'resources/cheering.png'
+                    ScrollView:
+                        scroll_wheel_distance: 90
+                        always_overscroll: False
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        bar_width: 16
+                        scroll_type: ['content', 'bars']
+                        
+                        GridLayout:
+                            id: edit_kpop
+                            cols: 1
+                            size_hint_y: None
+                            height: self.minimum_height
+                            row_default_height: 30
+                            col_default_width: root.width / 2
+
+                MDBottomNavigationItem:
+                    name: 'screen 2'
+                    text: "POP"
+                    # icon: 'resources/lazy.png'
+                    ScrollView:
+                        scroll_wheel_distance: 90
+                        always_overscroll: False
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        bar_width: 16
+                        scroll_type: ['content', 'bars']
+                        
+                        GridLayout:
+                            id: edit_pop
+                            cols: 1
+                            size_hint_y: None
+                            height: self.minimum_height
+                            row_default_height: 30
+                            col_default_width: root.width / 2
+
+                MDBottomNavigationItem:
+                    name: 'screen 3'
+                    text: "J-POP"
+                    # icon: 'resources/flex.png'
+                    ScrollView:
+                        scroll_wheel_distance: 90
+                        always_overscroll: False
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        bar_width: 16
+                        scroll_type: ['content', 'bars']
+                        
+                        GridLayout:
+                            id: edit_jpop
+                            cols: 1
+                            size_hint_y: None
+                            height: self.minimum_height
+                            row_default_height: 30
+                            col_default_width: root.width / 2
+
+        FloatLayout:
+            id: edit_button
+            size_hint: 1, 1
+
+            Image:
+                source: 'resources/hi.png'
+                size_hint: None, None
+                pos: root.width - 80, 60
+            Button:
+                text: '저장'
+                font_name: 'font/NanumGothicBold.ttf'
+                size: 100, 35
+                color: 0, 0, 0, 1
+                background_color: 153/255, 204/255, 255/255, 1
+                background_normal: ''
+                background_down: ''
+                pos: root.width - 100, 63
+                size_hint: None, None
+                on_release:
+                    root.manager.transition = NoTransition()
+                    root.manager.current = 'main'
+                    root.on_confirm()
