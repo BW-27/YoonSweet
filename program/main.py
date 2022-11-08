@@ -1,5 +1,14 @@
-# DEVELOP
-
+# app version 2.0
+#
+# kivy 2.1.0, python 3.7, pyinstaller 5.6.1
+# last_update: 2022-11-08 21:39 UTC+1
+#
+# in case if you find any problems duuring running this app
+# or trying to compile/build with pyinstaller you can contanct me by email: schaehun@student.42.fr
+#
+# warning: this app is made only for YoonSweet (https://www.twitch.tv/yoonsweet_)
+# do not share this content to any person even for individual purpose
+# all (c)copyright to schaehun
 
 
 # kivymd app
@@ -96,6 +105,11 @@ url_list_filepath = get_source.type_url_list_filepath()
 if ((not list_url) or (not list_filepath)):
     logger.critical("couldn't get data from source/filepath, source/url")
     exit(3)
+    
+# data read check
+if (not url_list_filepath):
+    logger.critical("couldn't get data: url_list_url")
+    exit(4)
 
 # data download
 if (not get_data.scrape_list_file_csv(list_url, list_filepath)):
