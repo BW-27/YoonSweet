@@ -1,4 +1,14 @@
-# DEVELOP
+# app version 2.1
+#
+# kivy 2.1.0, python 3.7, pyinstaller 5.6.1
+# last_update: 2022-11-10 17:39 UTC+1
+#
+# in case if you find any problems duuring running this app
+# or trying to compile/build with pyinstaller you can contanct me by email: schaehun@student.42.fr
+#
+# warning: this app is made only for YoonSweet (https://www.twitch.tv/yoonsweet_)
+# do not share this content to any person even for individual purpose
+# all (c)copyright to schaehun
 
 
 
@@ -11,6 +21,7 @@ from kivy.core.window import Window
 
 # start window size
 Window.size = (500,800)
+# set the minimal window size
 Window.minimum_width, Window.minimum_height = (250, 200)
 
 # kivy uix
@@ -22,12 +33,11 @@ from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.scrollview import ScrollView
 from kivy.uix.screenmanager import Screen, ScreenManager
-
+# kivymd uix
 from kivymd.uix.bottomnavigation.bottomnavigation import MDBottomNavigation
 
 # do not call 'from kivymd.uix.list import MDList,OneLineListItem'
 # causes error on pyinstaller: "Unable to import package 'kivymd.icon_definitions.md_icons'"
-# solved by calling it separately from 'kivymd.uix.list.list'
 from kivymd.uix.list.list import MDList
 from kivymd.uix.list.list import OneLineListItem
 
@@ -36,6 +46,7 @@ from kivy.config import Config
 
 # disable right mouse click button
 Config.set('input', 'mouse', 'mouse,disable_multitouch')
+# disable exit on 'esc' key
 Config.set('kivy', 'exit_on_escape', '0')
 
 # for timestamp of history file
@@ -50,6 +61,8 @@ import difflib
 import webbrowser as wb
 # logging module for debugging
 import logging
+# python garbage collector to reduce ram usage
+import gc
 
 # create and configure logger
 logging.basicConfig(filename="debug.log",
@@ -87,6 +100,9 @@ font_close = "[/font][/size]"
 # on search to store previous user_input
 old_input = ""
 
+# store items to remove after use
+result_list_info = []
+
 # setting lists: url, filepath
 list_url = get_source.type_url()
 list_filepath = get_source.type_data_list_filepath()
@@ -97,19 +113,22 @@ if ((not list_url) or (not list_filepath)):
     logger.critical("couldn't get data from source/filepath, source/url")
     exit(3)
 
+# data read check
+if (not url_list_filepath):
+    logger.critical("couldn't get data: url_list_url")
+    exit(4)
+
 # data download
 if (not get_data.scrape_list_file_csv(list_url, list_filepath)):
     logger.error("not all required files are loaded")
-    pass
 
 # Builder.load_file('main.kv')
 
-# main class 'main.kv'
 # main screen
 class Main(Screen):
     def __init__(self, **kwargs):
         super(Main, self).__init__(**kwargs)
-        # load data list to create MDList items
+        # create item widgets on MDList and display on screen
         self.load_data_kpop()
         self.load_data_pop()
         self.load_data_jpop()
@@ -119,7 +138,7 @@ class Main(Screen):
         file_id = 0
         mdlist = MDList()
         for i in range(1, 512):
-            song_info = get_data.get_song_info(i, list_filepath[0])
+            song_info = get_data.get_song_info(i, list_filepath[file_id])
             if (not song_info):
                 break
             item = self.create_item(song_info, file_id, i)
@@ -133,7 +152,7 @@ class Main(Screen):
         file_id = 1
         mdlist = MDList()
         for i in range(1, 512):
-            song_info = get_data.get_song_info(i, list_filepath[1])
+            song_info = get_data.get_song_info(i, list_filepath[file_id])
             if (not song_info):
                 break
             item = self.create_item(song_info, file_id, i)
@@ -147,7 +166,7 @@ class Main(Screen):
         file_id = 2
         mdlist = MDList()
         for i in range(1, 512):
-            song_info = get_data.get_song_info(i, list_filepath[2])
+            song_info = get_data.get_song_info(i, list_filepath[file_id])
             if (not song_info):
                 break
             item = self.create_item(song_info, file_id, i)
@@ -170,8 +189,7 @@ class Main(Screen):
     # on 'click' list item: output result to result.txt
     def onRelease(self, *args):
         instance = args[0]
-        if instance in self.ids.values():
-            self_id = list(self.ids.keys())[list(self.ids.values()).index(instance)]
+
         # write song_info to result.txt file
         try:
             with open("result/result.txt", "w", encoding="utf-8") as result_fd:
@@ -191,8 +209,17 @@ class Main(Screen):
             logger.error(Arguments)
             return
 
+        # find index of result_list_info matching with instance
+        for line, index in zip(result_list_info, range(0, 512)):
+            if (instance.text == line[0].text):
+                break
+
+        if instance in self.ids.values():
+            file_id = int(list(self.ids.keys())[list(self.ids.values()).index(instance)][0])
+        else:
+            file_id = int(result_list_info[index][1])
         try:
-            with open(url_list_filepath[int(self_id[0])], "r", encoding="utf-8") as url_list_fd:
+            with open(url_list_filepath[file_id], "r", encoding="utf-8") as url_list_fd:
                 for line in url_list_fd:
                     line = line.split(',')
 
@@ -206,15 +233,15 @@ class Main(Screen):
                             wb.open_new(line[1].replace('\n', ''))
                         else:
                             logger.error("url must start with https://")
-                pass
         except Exception as Arguments:
             logger.error(Arguments)
             return
 
     # call when user types something on text-input:search
     def on_enter(self):
-        # global
+        # global variables
         global old_input
+        global result_list_info
 
         # set user_input
         user_input = re.sub(' +', '', self.ids.search.text).upper()
@@ -222,9 +249,18 @@ class Main(Screen):
         # prevent rendering same result multiple times in a row
         if (user_input == old_input):
             return
-        # clean up ScrollView
-        self.ids.search_result.clear_widgets()
 
+        # clear widgets before assigning new
+        for i in range(0, 512):
+            try:
+                self.ids.result_list.remove_widget(result_list_info[i][0])
+            except:
+                self.ids.result_list.clear_widgets()
+                result_list_info.clear()
+                gc.collect()
+                break
+
+        # empty input entered
         if (not user_input):
             old_input = ""
             return
@@ -246,23 +282,22 @@ class Main(Screen):
                 if (user_input in search_info):
                     song_info.append(index)
                     result.append(song_info)
-        
-        # create MDList
-        result_list = MDList()
+
         for line, i in zip(result, range(0, len(result) + 1)):
-            # create OneLineListItem
+            # create OneLineListItem without assigning id to it
             item = OneLineListItem(
                 text=font_open
                 + line[0].strip(' ') + " - "
                 + line[1].strip(' ') + font_close,
                 on_release = lambda *args: self.onRelease(*args)
             )
-            # to determine which file_id to use in function onRelease()
-            self.ids[str(line[2]) + '_search_result_' + str(i)] = item
-            result_list.add_widget(item)
+            # to remove current item widgets when new user input incomes
+            # line[-1] for saving file_id to use it on onRelease() function
+            info = [item, line[-1]]
+            result_list_info.append(info)
 
-        # add MDList to ScrollView
-        self.ids.search_result.add_widget(result_list)
+            # add item to MDList
+            self.ids.result_list.add_widget(item)
 
         # save old_input for the next input
         old_input = user_input
@@ -516,6 +551,8 @@ class Edit(Screen):
                 except:
                     break
 
+
+
 # main class
 class MainApp(MDApp):
     def build(self):
@@ -529,7 +566,7 @@ class MainApp(MDApp):
         self.theme_cls.theme_style = "Light"
 
         # app default theme primary color: only in navbar
-        self.theme_cls.primary_palette = "Blue"
+        self.theme_cls.primary_palette = "LightBlue"
 
         # define screen manager and assign screens into it
         sm = ScreenManager()
@@ -540,6 +577,8 @@ class MainApp(MDApp):
         sm.current = 'main'
 
         return sm
+
+
 
 # running app
 if (__name__ == "__main__"):
