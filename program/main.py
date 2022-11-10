@@ -1,7 +1,7 @@
 # app version 2.1
 #
 # kivy 2.1.0, python 3.7, pyinstaller 5.6.1
-# last_update: 2022-11-10 6:59 UTC+1
+# last_update: 2022-11-10 07:10 UTC+1
 #
 # in case if you find any problems duuring running this app
 # or trying to compile/build with pyinstaller you can contanct me by email: schaehun@student.42.fr

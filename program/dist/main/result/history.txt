@@ -536,69 +536,8 @@
 [2022-11-10 05:22:12] 레드벨벳 - Power Up
 [2022-11-10 05:22:13] 레드벨벳 - Power Up
 [2022-11-10 05:30:30] 이무진 - 신호등
-[2022-11-10 06:47:32] 10cm - 봄이좋냐?
-[2022-11-10 06:48:12] 10cm - 서랍 (그 해 우리는 OST)
-[2022-11-10 06:49:02] 구윤회 - marry me
-[2022-11-10 06:49:07] 나래 - 호랑풍류가
-[2022-11-10 06:49:19] 나래 - 호랑수월가
-[2022-11-10 06:49:30] 10cm - 봄이좋냐?
-[2022-11-10 06:49:50] 아노하나 OST - Secret Base
-[2022-11-10 06:49:54] RADWIMPS - 전전전세
-[2022-11-10 06:49:57] Unlike Pluto - Everything black
-[2022-11-10 06:50:01] Troye Sivan - Youth
-[2022-11-10 06:50:02] Tones And I - Dance Monkey
-[2022-11-10 06:50:03] Tones And I - Dance Monkey
-[2022-11-10 06:50:03] Shawn Mendes - There's nothing holdin' me back
-[2022-11-10 06:50:04] SLANDER, Dylan Matthew - Love Is Gone
-[2022-11-10 06:50:04] Troye Sivan - Youth
-[2022-11-10 06:50:05] XXXTENTACION - SAD!
-[2022-11-10 06:50:06] Aimer (귀멸의칼날 2기 OST) - 잔향산가
-[2022-11-10 06:50:06] Shawn Mendes - There's nothing holdin' me back
-[2022-11-10 06:50:07] Troye Sivan - Youth
-[2022-11-10 06:50:07] Sasha Alex Sloan - Older
-[2022-11-10 06:50:08] Shawn Mendes - There's nothing holdin' me back
-[2022-11-10 06:50:08] SLANDER, Dylan Matthew - Love Is Gone
-[2022-11-10 06:50:08] Tones And I - Dance Monkey
-[2022-11-10 06:50:08] Troye Sivan - Youth
-[2022-11-10 06:50:09] Troye Sivan - Youth
-[2022-11-10 06:50:09] Unlike Pluto - Everything black
-[2022-11-10 06:50:09] XXXTENTACION - SAD!
-[2022-11-10 06:50:10] Zedd & Alessia Cara - Stay
-[2022-11-10 06:50:10] 아노하나 OST - Secret Base
-[2022-11-10 06:50:10] Aimer (귀멸의칼날 2기 OST) - 잔향산가
-[2022-11-10 06:50:10] Aimer (귀멸의칼날 2기 OST) - 잔향산가
-[2022-11-10 06:50:10] Aimer (귀멸의칼날 2기 OST) - 잔향산가
-[2022-11-10 06:50:11] Aimer (귀멸의칼날 2기 OST) - 잔향산가
-[2022-11-10 06:50:11] Aimer (귀멸의칼날 2기 OST) - 잔향산가
-[2022-11-10 06:50:11] XXXTENTACION - SAD!
-[2022-11-10 06:50:11] Tones And I - Dance Monkey
-[2022-11-10 06:50:12] Sasha Alex Sloan - Older
-[2022-11-10 06:50:12] Sasha Alex Sloan - Older
-[2022-11-10 06:50:12] Shawn Mendes - There's nothing holdin' me back
-[2022-11-10 06:50:12] SLANDER, Dylan Matthew - Love Is Gone
-[2022-11-10 06:50:12] Tones And I - Dance Monkey
-[2022-11-10 06:50:13] Troye Sivan - Youth
-[2022-11-10 06:50:17] Troye Sivan - Youth
-[2022-11-10 06:50:17] Tones And I - Dance Monkey
-[2022-11-10 06:50:19] Troye Sivan - Youth
-[2022-11-10 06:50:19] Tones And I - Dance Monkey
-[2022-11-10 06:50:20] Troye Sivan - Youth
-[2022-11-10 06:50:20] Tones And I - Dance Monkey
-[2022-11-10 06:50:20] Troye Sivan - Youth
-[2022-11-10 06:50:20] Tones And I - Dance Monkey
-[2022-11-10 06:50:20] Troye Sivan - Youth
-[2022-11-10 06:50:20] Tones And I - Dance Monkey
-[2022-11-10 06:50:20] Troye Sivan - Youth
-[2022-11-10 06:50:20] Tones And I - Dance Monkey
-[2022-11-10 06:50:20] Troye Sivan - Youth
-[2022-11-10 06:50:20] Tones And I - Dance Monkey
-[2022-11-10 06:50:20] Troye Sivan - Youth
-[2022-11-10 06:50:20] Tones And I - Dance Monkey
-[2022-11-10 06:50:20] Troye Sivan - Youth
-[2022-11-10 06:50:20] Tones And I - Dance Monkey
-[2022-11-10 06:50:25] BTS - DNA
-[2022-11-10 06:50:27] Connie Talbot - Count On Me
-[2022-11-10 06:50:30] 하뉴 마이고 - 오니가 없는 사이에
-[2022-11-10 06:50:31] Ben Folds - Still Fighting It
-[2022-11-10 06:50:33] Christina Perri - A Thousands Years
-[2022-11-10 06:50:39] 나래 - 호랑풍류가
+[2022-11-10 07:07:23] 10cm - 봄이좋냐?
+[2022-11-10 07:07:27] 10cm - 봄이좋냐?
+[2022-11-10 07:07:32] Ben Folds - Still Fighting It
+[2022-11-10 07:08:00] 나래 - 호랑수월가
+[2022-11-10 07:09:50] 나래 - 호랑수월가
